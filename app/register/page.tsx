@@ -35,10 +35,10 @@ export default function RegisterPage() {
 
       toast.success("Registration successful! Logging you in...");
 
-      // تسجيل الدخول تلقائيًا بعد التسجيل
+      // Login the user after successful registration
       await login(data.email, data.password);
 
-      // إعادة التوجيه
+      // Redirect to dashboard
       window.location.href = "/dashboard";
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Registration failed");
