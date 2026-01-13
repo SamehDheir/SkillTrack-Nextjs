@@ -1,15 +1,18 @@
-"use client";
+import { Providers } from "./providers";
+import { Metadata } from "next";
+import "./globals.css";
 
-import { AuthProvider } from "@/context/AuthContext";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode } from "react";
+export const metadata: Metadata = {
+  title: "Skill Track",
+  description: "Track your skills",
+};
 
-const queryClient = new QueryClient();
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </AuthProvider>
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   );
 }
