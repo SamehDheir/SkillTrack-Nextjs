@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 
+
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <AuthProvider>
