@@ -37,7 +37,7 @@ export default function SkillsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((skill: any) => (
           <Link
-            href={`/skills/${skill.id}`}
+            href={`/dashboard/skills/${skill.id}`}
             key={skill.id}
             className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition cursor-pointer border border-gray-100"
           >
