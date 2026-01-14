@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { StatCard } from "@/components/StatCard";
 
 export default function DashboardPage() {
   const { data, isLoading, isError } = useQuery({
@@ -33,38 +34,61 @@ export default function DashboardPage() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard title="Total Skills" value={data.totalSkills} color="bg-indigo-500" />
-        <StatCard title="Completed" value={data.completedSkills} color="bg-green-500" />
-        <StatCard title="In Progress" value={data.inProgressSkills} color="bg-yellow-500" />
-        <StatCard title="Avg Progress" value={`${data.avgProgress}%`} color="bg-purple-500" />
+        <StatCard
+          title="Total Skills"
+          value={data.totalSkills}
+          color="bg-indigo-500"
+        />
+        <StatCard
+          title="Completed"
+          value={data.completedSkills}
+          color="bg-green-500"
+        />
+        <StatCard
+          title="In Progress"
+          value={data.inProgressSkills}
+          color="bg-yellow-500"
+        />
+        <StatCard
+          title="Planned"
+          value={data.plannedSkills}
+          color="bg-gray-500"
+        />
       </div>
-
       <div className="mt-10 bg-white rounded-xl shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-600">Overall Progress</h2>
-        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+        <h2 className="text-xl font-semibold mb-4 text-gray-600">
+          Overall Progress
+        </h2>
+
+        <div className="w-full bg-gray-200 rounded-full h-4 flex overflow-hidden">
+          {/* Planned */}
           <div
-            className="h-full transition-all"
             style={{
-              width: `${data.avgProgress}%`,
-              background: "linear-gradient(to right, #6366F1, #8B5CF6)",
+              width: `${(data.plannedSkills / data.totalSkills) * 100}%`,
+              backgroundColor: "#9ca3af",
+            }}
+          />
+          {/* In Progress */}
+          <div
+            style={{
+              width: `${(data.inProgressSkills / data.totalSkills) * 100}%`,
+              backgroundColor: "#facc15",
+            }}
+          />
+          {/* Completed */}
+          <div
+            style={{
+              width: `${(data.completedSkills / data.totalSkills) * 100}%`,
+              backgroundColor: "#22c55e",
             }}
           />
         </div>
+
         <p className="mt-2 text-sm text-gray-500">
-          You have completed {data.avgProgress}% of your learning goals
+          Completed: {data.completedSkills}, In Progress:{" "}
+          {data.inProgressSkills}, Planned: {data.plannedSkills}
         </p>
       </div>
-    </div>
-  );
-}
-
-function StatCard({ title, value, color }: { title: string; value: string | number; color: string }) {
-  return (
-    <div className="bg-white rounded-xl shadow p-6 flex flex-col">
-      <span className="text-gray-500 text-sm">{title}</span>
-      <span className={`text-3xl font-bold mt-2 ${color} text-white rounded px-2 py-1 inline-block`}>
-        {value}
-      </span>
     </div>
   );
 }

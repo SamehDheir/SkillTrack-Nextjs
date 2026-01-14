@@ -27,7 +27,6 @@ export default function SkillDetailPage() {
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const {
     data: skill,
     isLoading,
@@ -91,6 +90,7 @@ export default function SkillDetailPage() {
 
   const onSubmit = (data: SkillInput) => {
     updateMutation.mutate(data);
+    router.push("/dashboard/skills");
   };
 
   if (isLoading) return <Loading />;
