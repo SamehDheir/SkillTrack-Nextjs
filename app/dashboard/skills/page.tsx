@@ -27,7 +27,7 @@ export default function SkillsPage() {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">My Skills</h1>
         <Link
-          href="/skills/new"
+          href="/dashboard/skills/new"
           className="bg-indigo-600 text-white px-6 py-2 rounded-xl hover:bg-indigo-700 shadow-md transition"
         >
           Add New Skill
